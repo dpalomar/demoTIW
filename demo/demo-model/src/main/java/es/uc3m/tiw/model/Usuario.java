@@ -1,12 +1,15 @@
 package es.uc3m.tiw.model;
 
+import javax.persistence.Entity;
 
 
 
+@Entity
 public class Usuario extends Persona {
 
 	private static final long serialVersionUID = 1L;
 
+	
 
 	private ROL rol;
 
@@ -19,6 +22,14 @@ public class Usuario extends Persona {
 	}
 
 	public Usuario() {
+	}
+
+	public Usuario(String nombre, String apellidos, String nick, String password) {
+		super(nombre, apellidos, nick, password);
+	}
+	public Usuario(String nombre, String apellidos, String nick, String password,ROL rol) {
+		super(nombre, apellidos, nick, password);
+		this.rol = rol;
 	}
 
 	@Override

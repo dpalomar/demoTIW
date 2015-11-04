@@ -33,6 +33,7 @@
 <input type="submit" value="Enviar"/>
 
 </form>
+<a href="registro.jsp">Registrarse</a>
 </div>
 </body>
 </html>
