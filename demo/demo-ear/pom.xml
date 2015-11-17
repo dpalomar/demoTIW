@@ -77,13 +77,13 @@
   	<dependency>
   		<groupId>es.uc3m.tiw.web</groupId>
   		<artifactId>demo-web</artifactId>
-  		<version>1.0</version>
+  		<version>${project.parent.version}</version>
   		<type>war</type>
   	</dependency>
   	<dependency>
   		<groupId>es.uc3m.tiw.model</groupId>
   		<artifactId>demo-model</artifactId>
-  		<version>1.0</version>
+  		<version>${project.parent.version}</version>
   	</dependency>
   </dependencies>
 </project>
