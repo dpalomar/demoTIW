@@ -15,4 +15,16 @@ El proyecto esta basado en el arquetipo maven *es.uc3m.tiw:TIW-Archetype*
 5. Ejecutar Run as -> maven build ... 
 6. introducir en **Goals** clean package 
 
+## ACTUALIZAR LA VERSION DEL PROYECTO ##
+
+Para cambiar la version del proyecto y actualizar por ejemplo de la 1.0 a la 2.0 hay que ejecutar el siguiente comando desde el proyecto padre
+
+		mvn versions:set -DnewVersion=2.0
+		mvn versions:commit
+		
+Si hubiera algun error, se puede revertir a la version anterior con el siguiente comando:
+
+		mvn versions:revert
+
+
 
