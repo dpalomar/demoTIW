@@ -1,6 +1,7 @@
 package es.uc3m.tiw.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -36,7 +37,8 @@ public class Persona implements Serializable {
 	@OneToOne(cascade = ALL)
 	private Direccion direccion;
 
-
+	@OneToMany(cascade = ALL)
+	private List<Direccion> direcciones = new ArrayList<Direccion>();
 
 	
 
@@ -140,6 +142,16 @@ public class Persona implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	public List<Direccion> getDirecciones() {
+		return direcciones;
+	}
+
+
+	public void setDirecciones(List<Direccion> direcciones) {
+		this.direcciones = direcciones;
 	}
 
 
