@@ -3,6 +3,7 @@ package es.uc3m.tiw.web.controladores;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -104,8 +105,12 @@ public class PersistenceServlet extends HttpServlet {
 		direccion.setCp(Integer.parseInt(request.getParameter("cp")));
 		direccion.setNumero(Integer.parseInt(request.getParameter("numero")));
 		direccion.setPoblacion(request.getParameter("poblacion"));
-		
+		//ejemplo de añadir una direccion
 		usuario.setDireccion(direccion);
+		//ejemplo añadir varias direcciones.
+		List<Direccion> direcciones = new ArrayList<Direccion>();
+		direcciones.add(direccion);
+		usuario.setDirecciones(direcciones);
 		
 		try {
 			dao.createUsuario(usuario);
