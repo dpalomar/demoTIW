@@ -78,32 +78,19 @@ public class LoginServlet extends HttpServlet {
 		String user = request.getParameter("usuario");
 		String password = request.getParameter("password");
 		String mensaje ="";
-		String pagina = "";
-		pagina = LOGIN_JSP;
+		String pagina = ENTRADA_JSP;
 		HttpSession sesion = request.getSession(true);
 		Usuario u = comprobarUsuario(user, password);
-		if (u != null){
+		if (sesion.getAttribute("acceso")!=null && sesion.getAttribute("acceso").equals("ok")){
 			
-			pagina = ENTRADA_JSP;
+			crearListaUsuarios(request, sesion, (Usuario)sesion.getAttribute("usuario"));
 			
-			try {
-			
-				usuarios = dao.findAll();
-				
-			} catch (InstantiationException | IllegalAccessException
-					| ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			request.setAttribute("usuarios", usuarios);
-			sesion.setAttribute("usuario", u);
-			sesion.setAttribute("acceso", "ok");
-			mensaje = servicioSaludos.saludar(u.getNombre());
-			request.setAttribute("mensaje", mensaje);
-			
-		}else{
-			
+		}
+		else if (u != null) {
+			crearListaUsuarios(request, sesion, u);
+		}
+		else{
+			pagina = LOGIN_JSP;
 			mensaje = "Usuario o password incorrectos";
 			request.setAttribute("mensaje", mensaje);
 		}
@@ -111,6 +98,28 @@ public class LoginServlet extends HttpServlet {
 			this.getServletContext().getRequestDispatcher(pagina).forward(request, response);
 			
 		
+	}
+
+
+
+	private void crearListaUsuarios(HttpServletRequest request,
+			HttpSession sesion, Usuario u) {
+		String mensaje;
+		try {
+		
+			usuarios = dao.findAll();
+			
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("usuarios", usuarios);
+		sesion.setAttribute("usuario", u);
+		sesion.setAttribute("acceso", "ok");
+		mensaje = servicioSaludos.saludar(u.getNombre());
+		request.setAttribute("mensaje", mensaje);
 	}
 
 	private Usuario  comprobarUsuario(String user, String password) {

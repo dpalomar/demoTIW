@@ -35,6 +35,9 @@ por el servlet controlador y no hay datos en el objeto request.
 <tr>
 	<td>${usuario.nombre }</td> <!-- Usuario es un POJO por lo que podemos acceder a sus propiedades sin necesidad de get/set -->
 	<td>${usuario.apellidos }</td>
+	<c:if test="${usuario.id != sessionScope.usuario.id }">
+		<td><a href="escribirMensaje.jsp?idFrom=${sessionScope.usuario.id }&idTo=${usuario.id}">Enviar Mensaje</a></td>
+	</c:if>
 </tr>
 
 </c:forEach>
