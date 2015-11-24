@@ -21,12 +21,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax</groupId>
-            <artifactId>javaee-web-api</artifactId>
-          
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
         	<groupId>es.uc3m.tiw.model</groupId>
         	<artifactId>demo-model</artifactId>
         	<version>${project.parent.version}</version>
@@ -38,6 +32,10 @@
         	<version>${project.parent.version}</version>
         	<type>ejb</type>
         	<scope>provided</scope>
+        </dependency>
+        <dependency>
+        	<groupId>javax</groupId>
+        	<artifactId>javaee-api</artifactId>
         </dependency>
     </dependencies>
 
