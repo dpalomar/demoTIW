@@ -77,8 +77,13 @@ public class PersonaDao  implements IPersona {
 		Query query =  em.createQuery("SELECT u FROM Usuario u where u.nick=:nick and u.password=:password", Usuario.class);
 		query.setParameter("nick", user);
 		query.setParameter("password", password);
-		return (Usuario) query.getSingleResult();
+		List resultList = query.getResultList();
+		if (resultList.isEmpty()) {
+			return null;
+		}else{
 		
+			return (Usuario) query.getSingleResult();
+		}
 		
 	}
 	
