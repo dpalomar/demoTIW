@@ -1,14 +1,17 @@
 package es.uc3m.tiw.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
+
 import static javax.persistence.GenerationType.AUTO;
 
 
 
 @Entity
-public class Direccion {
+public class Direccion implements Serializable{
 
 
 	@Id
