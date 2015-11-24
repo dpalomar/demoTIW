@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<form action="usuario" method="post">
+<form action="registrarse" method="post">
 
 <fieldset>
 	<legend>Datos</legend>

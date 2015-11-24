@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.transaction.UserTransaction;
 
+import es.uc3m.tiw.ejb.SaludosBeanLocal;
 import es.uc3m.tiw.model.Usuario;
 import es.uc3m.tiw.model.daos.PersonaDao;
 
@@ -38,11 +40,15 @@ public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private es.uc3m.tiw.model.Usuario usuario;
 	private List<Usuario> usuarios;
+	//inyeccion de la persistencia
 	@PersistenceContext(unitName="demo-model")
 	private EntityManager em;
 	@Resource
 	private UserTransaction ut;
 	private PersonaDao dao;
+	//inyeccion del EJB
+	@EJB
+	private SaludosBeanLocal servicioSaludos;
 	@Override
 	public void init() throws ServletException {
 	
@@ -93,6 +99,8 @@ public class LoginServlet extends HttpServlet {
 			request.setAttribute("usuarios", usuarios);
 			sesion.setAttribute("usuario", u);
 			sesion.setAttribute("acceso", "ok");
+			mensaje = servicioSaludos.saludar(u.getNombre());
+			request.setAttribute("mensaje", mensaje);
 			
 		}else{
 			

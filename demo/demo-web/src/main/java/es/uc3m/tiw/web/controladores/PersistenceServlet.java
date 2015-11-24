@@ -30,7 +30,7 @@ import es.uc3m.tiw.model.daos.PersonaDao;
 /**
  * Servlet implementation class PersistenceServlet
  */
-@WebServlet("/usuario")
+@WebServlet("/registrarse")
 public class PersistenceServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@PersistenceContext(unitName="demo-model")
@@ -124,7 +124,7 @@ public class PersistenceServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-	response.sendRedirect("usuario");
+	response.sendRedirect("index.jsp");
 	
 	}
 

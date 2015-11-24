@@ -8,14 +8,15 @@
 <title>Insert title here</title>
 <style type="text/css">
 .error{color:red;}
+.info{color:gray;}
 </style>
 </head>
 <body>
 <!-- Inclusión de una cabecera que muestra/oculta la opción Logout -->
 <jsp:include page="header.jsp"></jsp:include>
-<h1>Hola</h1>
-<h2>Tu nombre es: ${sessionScope.usuario.nombre}</h2> <!-- Esto saca el objeto usuario almacenado en la sesion por el LoginServlet y accede a su propiedad nombre -->
-<h2>tu clave es: ${param.password }</h2> <!-- Esto saca el parametro pasado por el usuario y recogido dentro del objeto request -->
+<h1>${mensaje }  <span class="info">(Este mensaje proviene de un EJB)</span></h1>
+<h2>Tu nombre es: ${sessionScope.usuario.nombre} <span class="info">(Este mensaje proviene de la sesion)</span></h2> <!-- Esto saca el objeto usuario almacenado en la sesion por el LoginServlet y accede a su propiedad nombre -->
+<h2>tu clave es: ${param.password } <span class="info">(Este mensaje proviene del request)</span></h2> <!-- Esto saca el parametro pasado por el usuario y recogido dentro del objeto request -->
 <c:if test="${empty param.password }">
 <p class="error">Si ves el nombre de usuario pero no la password es porque el nombre esta almacenado en session, mientras que la password en request.</p>
 </c:if>
