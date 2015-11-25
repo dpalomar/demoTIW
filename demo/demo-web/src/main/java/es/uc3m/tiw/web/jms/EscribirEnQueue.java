@@ -1,6 +1,8 @@
 package es.uc3m.tiw.web.jms;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -13,6 +15,7 @@ import javax.jms.Queue;
 import javax.jms.Session;
 
 import es.uc3m.tiw.model.Mensaje;
+import es.uc3m.tiw.model.Usuario;
 
 
 /**
@@ -30,30 +33,30 @@ import es.uc3m.tiw.model.Mensaje;
 public class EscribirEnQueue {
 
 	// Usando CDI no es necesario inyectar el ConnectionFactory
-	 @Resource(name = "jms/_tiwConnectionFactory")	
+	 @Resource(name = "jms_tiwConnectionFactory")	
 	 private  ConnectionFactory connectionFactory;
 	
-	  @Resource(lookup = "jms/mensajes")
+	  @Resource(lookup = "jms_mensajes")
 	  private  Queue queue;
 	 // @Inject
 	 // private JMSContext jmsContext;
 
-	  public void enviar(HashMap<Map, Mensaje> conversacion)
+	  public void enviar(Mensaje mensaje)
 	  {
 		  
 		  try {
 			MessageProducer messageProducer;
-			  ObjectMessage mensaje;
+			  ObjectMessage message;
 			  Connection connection = connectionFactory.createConnection();
 			  Session session = connection.createSession(false,Session.AUTO_ACKNOWLEDGE);
 			  
 
 			  messageProducer = session.createProducer(queue);
-			  mensaje = session.createObjectMessage();
-			  mensaje.setObject(conversacion);
+			  message = session.createObjectMessage();
+			  message.setObject(mensaje);
 
 
-			  messageProducer.send(mensaje);
+			  messageProducer.send(message);
 			  messageProducer.close();
 			  session.close();
 			  connection.close();

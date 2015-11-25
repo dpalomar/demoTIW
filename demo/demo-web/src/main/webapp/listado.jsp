@@ -9,6 +9,51 @@
 <style type="text/css">
 .error{color:red;}
 .info{color:gray;}
+a.escribir {
+	background-color:#44c767;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #18ab29;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #2f6627;
+}
+a.escribir:hover {
+	background-color:#5cbf2a;
+}
+a.escribir:active {
+	position:relative;
+	top:1px;
+}
+a.leer {
+	background-color:#455bc7;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #192dab;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #282d66;
+}
+a.leer:hover {
+	background-color:#2a36bd;
+}
+a.leer:active {
+	position:relative;
+	top:1px;
+}
+
 </style>
 </head>
 <body>
@@ -36,7 +81,10 @@ por el servlet controlador y no hay datos en el objeto request.
 	<td>${usuario.nombre }</td> <!-- Usuario es un POJO por lo que podemos acceder a sus propiedades sin necesidad de get/set -->
 	<td>${usuario.apellidos }</td>
 	<c:if test="${usuario.id != sessionScope.usuario.id }">
-		<td><a href="escribirMensaje.jsp?idFrom=${sessionScope.usuario.id }&idTo=${usuario.id}">Enviar Mensaje</a></td>
+		<td ><a href="escribirMensaje.jsp?idFrom=${sessionScope.usuario.id }&idTo=${usuario.id}" class="escribir">Enviar Mensaje</a></td>
+	</c:if>
+		<c:if test="${usuario.id == sessionScope.usuario.id }">
+		<td ><a href="mensajes?accion=leer" class="leer">Leer Mensajes</a></td>
 	</c:if>
 </tr>
 
@@ -46,3 +94,7 @@ por el servlet controlador y no hay datos en el objeto request.
 </div>
 </body>
 </html>
+
+
+
+

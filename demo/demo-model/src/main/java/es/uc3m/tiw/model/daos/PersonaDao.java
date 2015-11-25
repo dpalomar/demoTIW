@@ -43,6 +43,13 @@ public class PersonaDao  implements IPersona {
 		
 	}
 
+	@Override
+	public Usuario updateUsuario(Usuario usuario) throws NotSupportedException, SystemException, SecurityException, IllegalStateException, RollbackException, HeuristicMixedException, HeuristicRollbackException{
+		ut.begin();
+		em.merge(usuario);
+		ut.commit();
+		return usuario;
+	}
 	/* (non-Javadoc)
 	 * @see es.uc3m.tiw.model.daos.IPersona#findAll()
 	 */

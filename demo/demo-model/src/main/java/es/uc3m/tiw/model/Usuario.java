@@ -2,6 +2,7 @@ package es.uc3m.tiw.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.ManyToOne;
@@ -13,10 +14,7 @@ public class Usuario extends Persona {
 
 	private static final long serialVersionUID = 1L;
 
-	@OneToMany
-	private List<Mensaje> enviados;
-	@OneToMany
-	private List<Mensaje> recibidos;
+
 
 	private ROL rol;
 
@@ -45,20 +43,6 @@ public class Usuario extends Persona {
 		return super.toString()+" Usuario [" + (rol != null ? "rol=" + rol : "") + "]";
 	}
 
-	public List<Mensaje> getEnviados() {
-		return enviados;
-	}
 
-	public void setEnviados(List<Mensaje> enviados) {
-		this.enviados = enviados;
-	}
-
-	public List<Mensaje> getRecibidos() {
-		return recibidos;
-	}
-
-	public void setRecibidos(List<Mensaje> recibidos) {
-		this.recibidos = recibidos;
-	}
 
 }

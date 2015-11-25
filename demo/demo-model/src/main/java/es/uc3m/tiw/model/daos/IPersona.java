@@ -22,11 +22,16 @@ public interface IPersona {
 	public abstract List<Usuario> findAll() throws InstantiationException,
 			IllegalAccessException, ClassNotFoundException, SQLException;
 
-	public abstract Usuario findById(int id) throws SQLException;
+	public abstract Usuario findById(int id);
 
 	public abstract void removeUsuario(Usuario usuario)
 			throws NotSupportedException, SystemException,
 			IllegalStateException, SecurityException, HeuristicMixedException,
 			HeuristicRollbackException, RollbackException;
+
+	public abstract Usuario updateUsuario(Usuario usuario)
+			throws NotSupportedException, SystemException, SecurityException,
+			IllegalStateException, RollbackException, HeuristicMixedException,
+			HeuristicRollbackException;
 
 }
